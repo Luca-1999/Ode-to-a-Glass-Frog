@@ -149,13 +149,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - sound: 1
     clip: {fileID: 8300000, guid: 96b8157178134a94983ed079e1252b45, type: 3}
-    volume: 0.78
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - sound: 2
     clip: {fileID: 8300000, guid: 94cde96b4983ac046b6d2a10bc2ed16a, type: 3}
-    volume: 0.78
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -170,4 +170,22 @@ MonoBehaviour:
     volume: 0.78
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - sound: 5
+    clip: {fileID: 8300000, guid: 78a9daa2b986cd54695a4e2b8d140794, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - sound: 6
+    clip: {fileID: 8300000, guid: 4add53ec10a1de642af410838779bc70, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - sound: 7
+    clip: {fileID: 8300000, guid: 13324c0f17995a7438e9781b586c8230, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
     source: {fileID: 0}

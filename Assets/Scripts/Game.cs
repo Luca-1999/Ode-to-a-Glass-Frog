@@ -9,7 +9,24 @@ public class Game : MonoBehaviour
 {
 
     public GameObject player;
+ 
+    public static Game instance;
 
+    private void Awake()
+    {
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +39,10 @@ public class Game : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int getScene() {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
     //must somehow check if player is already on map

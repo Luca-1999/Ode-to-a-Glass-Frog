@@ -8,35 +8,17 @@ public class pUpParent : MonoBehaviour
         mass, soul, blood,
     }
 
-    public pUps pUp;
-    public int bloodBonus;//health
-    public int soulBonus;//damage
+    //public int bloodBonus;
+    //public int soulBonus;//damage
 
+    pUps getType() {
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if (obj.tag == "Player") {
-            Debug.Log("Collided with player");
-            onPickup(obj);
-            Destroy(gameObject);
-        }
+        return pUps.blood;
     }
 
+    //Uhhhh not closed to the addition of new power ups
     void onPickup(GameObject obj)
     {
-        switch (pUp) {
-            case pUps.mass:
-                obj.GetComponent<playerMovement>().dJump = true;
-                break;
-            case pUps.soul:
-                obj.GetComponent<PlayerCombat>().attckDamage += soulBonus;
-                break;
-            case pUps.blood:
-                obj.GetComponent<PlayerCombat>().maxHealth += bloodBonus;
-                obj.GetComponent<PlayerCombat>().fullHeal();
-                break;
-        }
     }
 
 }

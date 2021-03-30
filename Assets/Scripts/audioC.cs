@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class audioC : MonoBehaviour
 {
 
     public enum Sounds {
-        pMove,pJump,aSound,bDeath,bGround,pDamage,lStep,rStep,
+        pMove,pJump,aSound,bDeath,bGround,pDamage,lStep,rStep, intro,
     }
 
     public Sound[] sn;
+
+    int prevBIndex;
+
+    public Sounds[] bSound;
 
     public static audioC instance;
 
@@ -37,6 +42,11 @@ public class audioC : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     //copies Clip state to Audio Source
     private void matchSource(AudioSource aS, Sound s) {
 
@@ -48,15 +58,16 @@ public class audioC : MonoBehaviour
 
     private void Start()
     {
-        Play(Sounds.bGround);
+        prevBIndex = 0;
+        //Play(Sounds.intro);
     }
 
-    //for player effects and
+    //for player sounds
     public void Play(Sounds s) {
         sn[(int)s].source.Play();
     }
 
-    //for enemies, creates and gets rid of empty game object
+    //for enemies & other, creates and gets rid of empty game object
     //with attached audio source
     //attempts to implement 3d sound
     public void Play(Sounds s, Vector3 position, string tag)
@@ -81,6 +92,21 @@ public class audioC : MonoBehaviour
         sn[(int)s].source.Stop();
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        int curBIndex = Game.instance.getScene();
+        Debug.Log("loaded scene");
+        //SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("Cur index is: " + curBIndex);
+        if (isPlaying(bSound[prevBIndex])) Stop(bSound[prevBIndex]);
+        Play(bSound[curBIndex]);
+        prevBIndex = curBIndex;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     //FindObjectOfType<audioC>().Play(still need reference to enum);
     //controller.Play(audioC.Sounds.bDeath);
 }

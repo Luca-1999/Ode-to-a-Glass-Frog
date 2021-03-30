@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
     public int attckDamage = 10;
     public float attackRate = 1f; //attack per second
     float nextAttackTime = 0f;
-    CharacterController2D cc2d;
+    CharMovementManager cc2d;
     private bool airAttck = false;
     public AudioSource aS;
     private audioC audioCont;
@@ -31,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         //pass script to cc2d by reference
-        cc2d = GetComponent<CharacterController2D>();
+        cc2d = GetComponent<CharMovementManager>();
         currentHealth = maxHealth;
     }
 
@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 //check if grounded
-                if (!cc2d.isGrounded)
+                if (!cc2d.grounded)
                 {
                     //if so, interrupt jump animation
                     anim.SetBool("IsJumping", false);
