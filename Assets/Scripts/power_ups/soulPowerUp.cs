@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// extra damage!
 public class soulPowerUp : pUpParent
 {
     private pUps pUp = pUps.soul;

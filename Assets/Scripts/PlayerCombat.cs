@@ -7,8 +7,10 @@ public class PlayerCombat : MonoBehaviour
     public int maxHealth = 200;
     private int currentHealth;
     public Animator anim;
+
     public Transform attackPoint;
     public float attackRange = 0.5f;
+
     public LayerMask enemyLayers;
     public int attckDamage = 10;
     public float attackRate = 1f; //attack per second
@@ -44,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
             //if not then proceed as usual
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                //check if grounded
+                //review this, value of gorunded deprecated, unexpected dependcy
                 if (!cc2d.grounded)
                 {
                     //if so, interrupt jump animation
@@ -74,9 +76,7 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("attack function called");
 
         //detect enemies in range
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attackPointA.position, attackPointB.position, enemyLayers);
-
         //apply damage to all enemies hit
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -84,14 +84,6 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(attckDamage);
         }
         //anim.SetBool("Attack", false);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-            return;
-        //Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        
     }
 
     public void TakeDamage(int damage) {

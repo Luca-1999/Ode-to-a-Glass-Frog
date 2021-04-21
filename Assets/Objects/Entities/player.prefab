@@ -101,8 +101,6 @@ GameObject:
   - component: {fileID: 8774372311212133890}
   - component: {fileID: 968848225022817448}
   - component: {fileID: 6840706343115364601}
-  - component: {fileID: 7082591933543241608}
-  - component: {fileID: 2232405213302733957}
   - component: {fileID: 5256762027056581694}
   - component: {fileID: 1324050644829423148}
   - component: {fileID: 2024611193}
@@ -204,48 +202,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &7082591933543241608
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4676325337683117328}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 710563bf76dc0c841864bb4d1cd2e79d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0036252216, y: 0.11130368}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.75}
-    newSize: {x: 1, y: 0.75}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31074, y: 0.24938084}
-  m_EdgeRadius: 0
---- !u!58 &2232405213302733957
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4676325337683117328}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 710563bf76dc0c841864bb4d1cd2e79d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.022481501, y: -0.14}
-  serializedVersion: 2
-  m_Radius: 0.17
 --- !u!114 &5256762027056581694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,9 +217,13 @@ MonoBehaviour:
   controller: {fileID: 1324050644829423148}
   anim: {fileID: 2024611195}
   runSpeed: 10
-  wS: {fileID: 2024611186}
-  jS: {fileID: 2024611197}
   dJump: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1324050644829423148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,11 +236,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32a65f62c8aa184387ffad3dbbc5c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 1
+  grounded: 1
   airControl: 1
   smoothingFactor: 0.05
   jumpF: 230
   anim: {fileID: 2024611195}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!68 &2024611193
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -305,7 +271,7 @@ EdgeCollider2D:
   - {x: 0.11630881, y: 0.049000353}
   - {x: 0.11559078, y: 0.014426766}
   - {x: 0.07880882, y: -0.17912215}
-  - {x: 0.05226817, y: -0.22301751}
+  - {x: 0.05689517, y: -0.22860162}
   - {x: 0.051278107, y: -0.24092638}
   - {x: -0.08365976, y: -0.24151419}
   - {x: -0.09453317, y: -0.2243015}

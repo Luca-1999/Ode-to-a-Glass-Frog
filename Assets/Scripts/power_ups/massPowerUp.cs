@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// one extra jump!
 public class massPowerUp : pUpParent
 {
     private pUps pUp = pUps.mass;

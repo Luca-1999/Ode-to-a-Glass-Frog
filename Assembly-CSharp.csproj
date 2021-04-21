@@ -61,6 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\audioC.cs" />
+    <Compile Include="Assets\Scripts\boss\boss_attack.cs" />
+    <Compile Include="Assets\Scripts\boss\boss_manager.cs" />
+    <Compile Include="Assets\Scripts\boss\boss_movement.cs" />
+    <Compile Include="Assets\Scripts\boss\boss_run.cs" />
     <Compile Include="Assets\Scripts\CameraRes.cs" />
     <Compile Include="Assets\Scripts\CharInputManager.cs" />
     <Compile Include="Assets\Scripts\CharMovementManager.cs" />
@@ -77,8 +81,8 @@
     <Compile Include="Assets\Scripts\PoolTest.cs" />
     <Compile Include="Assets\Scripts\power_ups\bloodPowerUp.cs" />
     <Compile Include="Assets\Scripts\power_ups\massPowerUp.cs" />
+    <Compile Include="Assets\Scripts\power_ups\pUpParent.cs" />
     <Compile Include="Assets\Scripts\power_ups\soulPowerUp.cs" />
-    <Compile Include="Assets\Scripts\pUpParent.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />

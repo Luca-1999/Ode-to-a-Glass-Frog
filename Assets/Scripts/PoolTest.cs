@@ -42,7 +42,7 @@ public class PoolTest : MonoBehaviour
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
-    //dictionary of tag and queues; when instantiating new object
+    //dictionary of tags and queues; when instantiating new object
     //simply grab the first in the queue
 
     // Start is called before the first frame update

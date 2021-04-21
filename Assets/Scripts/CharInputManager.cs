@@ -33,7 +33,8 @@ public class CharInputManager : MonoBehaviour
     //player input
     void Update()
     {
-        
+        // check grounded only really needs to be called a single time
+
         //returns value between -1 and 1, determined by user input
         //allows for smoother movement
         hMotion = Input.GetAxisRaw("Horizontal")*runSpeed;
@@ -45,51 +46,48 @@ public class CharInputManager : MonoBehaviour
             canDoubleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump")) {
-            if (checkGrounded()) {
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (checkGrounded())
+            {
                 isJumpSound = true;
                 jump = true;
                 anim.SetBool("IsJumping", true);
-            } else {
-                //double jump pressed only if key is pressed on frame
-                if (Input.GetButtonDown("Jump")){
-                    if (canDoubleJump) {
-                        isJumpSound = true;
-                        jump = true;
-                        //resets jump animation on double jump
-                        anim.Play("Base Layer.Player_jump", -1, 0f);
-                        //anim.SetBool("IsJumping", true);
-                        canDoubleJump = false;
-                    }
-                }
-            } 
+            }   else if (canDoubleJump) {
+                isJumpSound = true;
+                jump = true;
+                //resets jump animation on double jump
+                anim.Play("Base Layer.Player_jump", -1, 0f);
+                //anim.SetBool("IsJumping", true);
+                canDoubleJump = false;
+            }
         }
+
+        // old implementation, kept temporarily for reference
+        //if (Input.GetButtonDown("Jump")) {
+        //    if (checkGrounded()) {
+        //        isJumpSound = true;
+        //        jump = true;
+        //        anim.SetBool("IsJumping", true);
+        //    } else {
+        //        //double jump pressed only if key is pressed on frame
+        //        if (Input.GetButtonDown("Jump")){
+        //            if (canDoubleJump) {
+        //                isJumpSound = true;
+        //                jump = true;
+        //                //resets jump animation on double jump
+        //                anim.Play("Base Layer.Player_jump", -1, 0f);
+        //                //anim.SetBool("IsJumping", true);
+        //                canDoubleJump = false;
+        //            }
+        //        }
+        //    } 
+        //}
 
         //can guard this call by is grounded if air control
         //is to be denied
         controller.Move(hMotion * Time.fixedDeltaTime, jump, checkGrounded());
         jump = false;
-    }
-
-    //if condition is met play audio source
-    //if repeat, then audio source will play once again
-    [System.Obsolete("making use of animation events for sound")]
-    void checkPlaySound(bool cond, audioC.Sounds s)
-    {
-
-        if (cond)
-        {
-            if (!audioCont.isPlaying(s))
-            {
-                //consider creating walk bool and only play audio after jump has been checked
-                audioCont.Play(s);
-            }
-        }
-        else
-        {
-            audioCont.Stop(s);
-        }
-
     }
 
     //used to apply player input
@@ -123,24 +121,24 @@ public class CharInputManager : MonoBehaviour
         }
     }
 
-    //called a fixed amount of times as per update
+    // check grounded with box cast using player's edge collider as a reference
     private bool checkGrounded()
     {
         //box cast from center of player edge colliter
         RaycastHit2D raycastHit3d = Physics2D.BoxCast(edgeCol.bounds.center, edgeCol.bounds.size, 0f, Vector2.down, .1f, groundLayer | enemyLayer);
         bool amGrounded = raycastHit3d.collider != null;
         //Debug.Log(amGrounded);
-        if (amGrounded && !wasGroudned)
+        if (amGrounded && !wasGroudned)// landed
         {
             anim.SetBool("IsJumping", false);
-            anim.SetBool("IsFall", false);
+            anim.SetBool("IsFall", false);// animaiton to be implemented
         }
         wasGroudned = amGrounded;
         return amGrounded;
     }
 
     //secondary option to ground check, keeps a grounded global, but is only called
-    //on collision
+    //on collision; might be more efficient
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //string s = collision.gameObject.tag;

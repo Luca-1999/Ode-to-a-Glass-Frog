@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume() {
         pauseMenuUI.SetActive(false);
+        // set time back to default!
         Time.timeScale = 1f;
         isPaused = false;
     }

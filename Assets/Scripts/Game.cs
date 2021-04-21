@@ -45,7 +45,8 @@ public class Game : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    //must somehow check if player is already on map
+    // Not currently used
+    // must somehow check if player is already on map
     public GameObject spawnPlayer(string s) {
 
         GameObject obj = Instantiate(player, GameObject.FindGameObjectWithTag(s).transform.position, Quaternion.identity);

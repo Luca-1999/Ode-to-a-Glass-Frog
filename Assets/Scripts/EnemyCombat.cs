@@ -23,9 +23,9 @@ public class EnemyCombat : MonoBehaviour
     {
         //check if able to attack
         if (Time.time >= nextAttackTime) {
-
-            attack();
-            nextAttackTime = Time.time + 1f / attackRate;
+            if (attack()) {
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
     }
 
@@ -48,6 +48,7 @@ public class EnemyCombat : MonoBehaviour
         return playerColl != null;
     }
 
+    // draw attack range
     private void OnDrawGizmosSelected()
     {
         if (this.transform == null)

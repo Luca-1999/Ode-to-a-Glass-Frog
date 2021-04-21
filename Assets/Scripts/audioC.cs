@@ -7,12 +7,13 @@ public class audioC : MonoBehaviour
 {
 
     public enum Sounds {
-        pMove,pJump,aSound,bDeath,bGround,pDamage,lStep,rStep, intro,
+        pMove,pJump,aSound,bDeath,bGround,pDamage,lStep,rStep,intro,
     }
 
     public Sound[] sn;
 
-    int prevBIndex;
+    // index of the background music; used to set audio on scene load
+    int prevBIndex = 0;
 
     public Sounds[] bSound;
 
@@ -20,7 +21,7 @@ public class audioC : MonoBehaviour
 
     private void Awake()
     {
-
+        // poor man's singleton
         if (instance == null)
         {
             instance = this;
@@ -31,14 +32,11 @@ public class audioC : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
         //attach audio source to each Sound object
         foreach (Sound s in sn) {
             s.source = gameObject.AddComponent<AudioSource>();
             matchSource(s.source, s);
-            //s.source.clip = s.clip;
-            //s.source.volume = s.volume;
-            //s.source.pitch = s.pitch;
-            //s.source.loop = s.loop;
         }
     }
 
@@ -62,11 +60,12 @@ public class audioC : MonoBehaviour
         //Play(Sounds.intro);
     }
 
+    #region wrappers
     //for player sounds
     public void Play(Sounds s) {
         sn[(int)s].source.Play();
     }
-
+    
     //for enemies & other, creates and gets rid of empty game object
     //with attached audio source
     //attempts to implement 3d sound
@@ -91,6 +90,7 @@ public class audioC : MonoBehaviour
     public void Stop(Sounds s) {
         sn[(int)s].source.Stop();
     }
+    #endregion
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -98,6 +98,8 @@ public class audioC : MonoBehaviour
         Debug.Log("loaded scene");
         //SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Cur index is: " + curBIndex);
+        Debug.Log("Prev index is: " + prevBIndex);
+        Debug.Log("bGround size is: " + bSound.Length);
         if (isPlaying(bSound[prevBIndex])) Stop(bSound[prevBIndex]);
         Play(bSound[curBIndex]);
         prevBIndex = curBIndex;
@@ -107,6 +109,8 @@ public class audioC : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    // call reference for self
     //FindObjectOfType<audioC>().Play(still need reference to enum);
     //controller.Play(audioC.Sounds.bDeath);
 }

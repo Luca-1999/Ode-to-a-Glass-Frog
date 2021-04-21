@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// increase in max health and full heal
 public class bloodPowerUp : pUpParent
 {
     private pUps pUp = pUps.blood;

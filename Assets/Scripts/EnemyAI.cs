@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 
-//adapted from
+// adapted from
 // https://www.youtube.com/watch?v=jvtFUfJ6CP8&list=RDCMUCYbK_tjZ2OrIZFBvU6CCMiA&start_radio=1&t=1350
 
 public class EnemyAI : MonoBehaviour
@@ -51,6 +51,7 @@ public class EnemyAI : MonoBehaviour
         return playerColl != null;
     }
 
+    // draw aggro range
     private void OnDrawGizmosSelected()
     {
         if (this.transform == null)

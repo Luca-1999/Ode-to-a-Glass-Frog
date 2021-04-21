@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  dC: {fileID: 8300000, guid: 0b20082c22c7331419e0ea90fc4f285c, type: 3}
   aCont: {fileID: 0}
 --- !u!114 &6945527139295288100
 MonoBehaviour:
